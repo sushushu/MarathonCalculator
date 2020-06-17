@@ -18,7 +18,7 @@
 
 /* Begin PBXFileReference section */
 		1FE73D5469F15643DAE268B8 /* Pods-Speed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speed.release.xcconfig"; path = "Target Support Files/Pods-Speed/Pods-Speed.release.xcconfig"; sourceTree = "<group>"; };
-		51947E58234C854F00D844CB /* FuckingRunCalcul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuckingRunCalcul.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		51947E58234C854F00D844CB /* PaceCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaceCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51947E5B234C854F00D844CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51947E5D234C854F00D844CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		51947E60234C854F00D844CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		51947E59234C854F00D844CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				51947E58234C854F00D844CB /* FuckingRunCalcul.app */,
+				51947E58234C854F00D844CB /* PaceCalculator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,7 +118,7 @@
 			);
 			name = Speed;
 			productName = Speed;
-			productReference = 51947E58234C854F00D844CB /* FuckingRunCalcul.app */;
+			productReference = 51947E58234C854F00D844CB /* PaceCalculator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -364,15 +364,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3TMLD9SC48;
+				DEVELOPMENT_TEAM = 8EYRWA5YD2;
 				INFOPLIST_FILE = Speed/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "-.Speed";
-				PRODUCT_NAME = FuckingRunCalcul;
+				PRODUCT_NAME = PaceCalculator;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -384,15 +385,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3TMLD9SC48;
+				DEVELOPMENT_TEAM = 8EYRWA5YD2;
 				INFOPLIST_FILE = Speed/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "-.Speed";
-				PRODUCT_NAME = FuckingRunCalcul;
+				PRODUCT_NAME = PaceCalculator;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

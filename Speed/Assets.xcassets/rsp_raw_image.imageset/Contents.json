@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "LaunchImage_icon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "rsp_raw_image.jpg",
       "scale" : "2x"
     },
     {

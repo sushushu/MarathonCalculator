@@ -53,6 +53,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         doDistanceShit()
         doSpeedShit()
         someFuckingWork()
+        
     }
     
     // 计算时间

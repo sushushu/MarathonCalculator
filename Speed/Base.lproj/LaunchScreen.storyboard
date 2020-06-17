@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,16 +16,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage_icon" translatesAutoresizingMaskIntoConstraints="NO" id="F3h-AJ-4ds">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hakone" translatesAutoresizingMaskIntoConstraints="NO" id="F3h-AJ-4ds">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="F3h-AJ-4ds" secondAttribute="trailing" id="4e5-6q-MPN"/>
-                            <constraint firstItem="F3h-AJ-4ds" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="OHp-wu-Lwd"/>
-                            <constraint firstAttribute="bottom" secondItem="F3h-AJ-4ds" secondAttribute="bottom" id="YnO-la-hjB"/>
-                            <constraint firstItem="F3h-AJ-4ds" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="euy-Qk-uLT"/>
+                            <constraint firstAttribute="trailing" secondItem="F3h-AJ-4ds" secondAttribute="trailing" id="CyA-PG-g44"/>
+                            <constraint firstItem="F3h-AJ-4ds" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="OgW-iL-Oru"/>
+                            <constraint firstAttribute="top" secondItem="F3h-AJ-4ds" secondAttribute="top" id="cCD-vT-nZ1"/>
+                            <constraint firstAttribute="bottom" secondItem="F3h-AJ-4ds" secondAttribute="bottom" id="deZ-sB-frl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -36,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchImage_icon" width="640" height="1136"/>
+        <image name="Hakone" width="540" height="540"/>
     </resources>
 </document>
