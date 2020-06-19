@@ -12,6 +12,9 @@ import RxRelay
 import SnapKit
 import RxCocoa
 
+
+// 1英里 =  1,609.34米 = 1.61 公里
+
 class ViewController: UIViewController,UITextFieldDelegate {
     
     lazy var m_imageView = UIImageView()
@@ -41,20 +44,16 @@ class ViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        initImageView()
-        initTimeTextField ()
-        initSegment ()
-        initDistanceTextField ()
-        initSpeedView ()
-        initCleanButton ()
-        initCalculeButtons ()
+        initUIs ()
 
         doTimeShit()
         doDistanceShit()
         doSpeedShit()
-        someFuckingWork()
-        
+        someFuckingWorkForTextField()
     }
+    
+    
+    // MARK: - buttons shit
     
     // 计算时间
     private func doTimeShit() {
@@ -62,53 +61,52 @@ class ViewController: UIViewController,UITextFieldDelegate {
         timeObvs.bind(onNext: {
             (res) in
             
+            self.setButtonTitleColorHighlight(btn: self.calculeTimeButton)
             self.registerTFs()
-            
+
             // 空值判断
             if (self.distanceTF.text == "") { self.distanceTF.text = "0" }
             if (self.sp_minutesTF.text == "") { self.sp_minutesTF.text = "0" }
             if (self.sp_secondsTF.text == "") { self.sp_secondsTF.text = "0" }
-            
+
             if (self.distanceTF.text == "0" ) { self.alert("距离不能为0"); return; }
             if (self.sp_minutesTF.text == "0" && self.sp_secondsTF.text == "0") { self.alert("分和秒配速不能都为0"); return; }
-            
+
             // TODO: 太大或者太小判断
             // TODO: 禁止复制暂停 禁止输入符号和英文
             // TODO: 限制不能超过3位数
             let d = Float(self.distanceTF.text!)! // km
             let m = Float(self.sp_minutesTF.text!)! // min
             let s = Float(self.sp_secondsTF.text!)! // sencond
-            
-            print(" 距离: \(d)km 配速：\(m)分钟 \(s)秒 \n")
-            
+
+            print(" 距离: \(d)km  配速：\(m)分钟 \(s)秒 ")
+
             let meter = d
-            let second = m * 60 + s
-            
-            let totalSecond = meter * second // 秒
-            
-            let allTime: Int = Int(totalSecond)
+            let second = m * 60 + s // 转换为秒
+
+            let allTime = Int(meter * second) // 距离 * 秒速
             var hours = 0
             var minutes = 0
             var seconds = 0
             var hoursText = ""
             var minutesText = ""
             var secondsText = ""
-            
+
             hours = allTime / 3600
-            hoursText = hours > 9 ? "\(hours)" : "0\(hours)"
-            
+            hoursText = hours > 9 ? "\(hours)" : "\(hours)"
+
             minutes = allTime % 3600 / 60
-            minutesText = minutes > 9 ? "\(minutes)" : "0\(minutes)"
-            
+            minutesText = minutes > 9 ? "\(minutes)" : "\(minutes)"
+
             seconds = allTime % 3600 % 60
-            secondsText = seconds > 9 ? "\(seconds)" : "0\(seconds)"
-            
-            print(" 需要的总时间： \(hoursText)小时  \(minutesText)分  \(secondsText)秒")
-            
+            secondsText = seconds > 9 ? "\(seconds)" : "\(seconds)"
+
+            print(" 需要的总时间： \(hoursText)小时  \(minutesText)分  \(secondsText)秒  \n \n")
+
             self.hoursTF.text = hoursText
             self.minutesTF.text = minutesText
             self.secondsTF.text = secondsText
-            
+
         }).disposed(by: disposeBag)
     }
     
@@ -118,6 +116,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         distanceObvs.bind(onNext: {
             (res) in
             
+            self.setButtonTitleColorHighlight(btn: self.calculeDistanceButton)
             self.registerTFs()
             
             // 空值判断
@@ -137,14 +136,13 @@ class ViewController: UIViewController,UITextFieldDelegate {
             let m = Float(self.sp_minutesTF.text!)! // min
             let s = Float(self.sp_secondsTF.text!)! // sencond
             
-            print(" \n 配速：\(m)分 \(s)秒 \n")
+            print(" \n 配速：\(m)分 \(s)秒 \n \n")
             
             // 距离 = 总时间/速度
             let totalTime = hours * 60.0 * 60.0 + minutes * 60.0 + seconds
             let totalSpeed = m * 60 + s
             
             if (totalSpeed == 0 ) {
-                self.distanceTF.text = ""
                 self.alert("要输入配速鸭")
                 return;
             }
@@ -161,6 +159,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         distanceObvs.bind(onNext: {
             (res) in
             
+            self.setButtonTitleColorHighlight(btn: self.calculeSpeedButton)
             self.registerTFs()
             
             // 空值判断
@@ -178,19 +177,16 @@ class ViewController: UIViewController,UITextFieldDelegate {
             let minutes = Float(self.minutesTF.text!)!
             let seconds = Float(self.secondsTF.text!)!
 
-            print(" \n 距离：\(totalDistance)km \(hours)小时 \(minutes)分 \(seconds)秒 \n")
+            print(" 距离：\(totalDistance)km ， 时间：\(hours)小时 \(minutes)分 \(seconds)秒 ")
             
             if (totalDistance == 0) {
-                self.alert("要输入距离鸭")
+                self.alert("抱歉，距离为0可算不了~")
                 return;
             }
             
             // 全部转换为分钟再算
             let totalMinutes = hours * 60 + minutes + (seconds/60)
-            let res = String(format: "%.2f", (totalMinutes/totalDistance)) // 同单位相除即可
-            print("总距离： \(res)km")
-            
-            let allTime: Int = Int((totalMinutes/totalDistance * 60))
+            let allTime = Int((totalMinutes/totalDistance * 60))
             var t_hours = 0
             var t_minutes = 0
             var t_seconds = 0
@@ -199,15 +195,15 @@ class ViewController: UIViewController,UITextFieldDelegate {
             var secondsText = ""
             
             t_hours = allTime / 3600
-            hoursText = hours > 9 ? "\(t_hours)" : "0\(t_hours)"
+            hoursText = hours > 9 ? "\(t_hours)" : "\(t_hours)"
             
             t_minutes = allTime % 3600 / 60
-            minutesText = minutes > 9 ? "\(t_minutes)" : "0\(t_minutes)"
+            minutesText = minutes > 9 ? "\(t_minutes)" : "\(t_minutes)"
                 
             t_seconds = allTime % 3600 % 60
-            secondsText = seconds > 9 ? "\(t_seconds)" : "0\(t_seconds)"
+            secondsText = seconds > 9 ? "\(t_seconds)" : "\(t_seconds)"
            
-            print(" 需要的总时间： \(hoursText)小时  \(minutesText)分  \(secondsText)秒")
+            print(" 配速为： \(hoursText)小时  \(minutesText)分  \(secondsText)秒  \n \n")
             
             self.sp_minutesTF.text = "\(t_hours * 60 + t_minutes)" // 适配超过1小时的情况
             self.sp_secondsTF.text = secondsText
@@ -216,7 +212,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     }
     
 
-    private func someFuckingWork() {
+    private func someFuckingWorkForTextField() {
         // 设置segment
         let segementObvs = segement.rx.selectedSegmentIndex.asObservable()
         segementObvs.bind (onNext: { (res) in
@@ -239,8 +235,9 @@ class ViewController: UIViewController,UITextFieldDelegate {
         
         // 清空所有textField
         _ = cleanButton.rx.tap.bind(onNext: { _ in
+            self.setButtonTitleColorHighlight(btn: self.cleanButton)
             for view in self.view.subviews {
-                self.reset(view)
+                self.resetAlltheTextField(view)
                 self.registerTFs()
             }
         })
@@ -253,18 +250,10 @@ class ViewController: UIViewController,UITextFieldDelegate {
         self.sp_secondsTF.delegate = self
     }
     
-    private func reset(_ view : UIView) {
-        if let res = view as? UITextField {
-            res.text = ""
-        } else {
-            for noRes in view.subviews {
-                if let res = noRes as? UITextField {
-                    res.text = ""
-                }
-            }
-        }
-    }
-        
+    
+    
+    // MARK: - textField delegate
+    
     // 该方法当文本框内容出现变化时 及时获取文本最新内容
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == self.distanceTF {
@@ -309,37 +298,21 @@ class ViewController: UIViewController,UITextFieldDelegate {
         return false
     }
     
-    private func registerTFs() {
-        self.view.endEditing(true)
+
+
+    // MARK: - init UIs
+    
+    private func initUIs () {
+        initImageView()
+        initTimeTextField ()
+        initSegment ()
+        initDistanceTextField ()
+        initSpeedView ()
+        initCleanButton ()
+        initCalculeButtons ()
     }
     
-    private func dispose() {
-        print("miaomiaomiao???")
-    }
-
     private func initImageView () {
-//        firstLabel.numberOfLines = 0
-//        secondLabel.numberOfLines = 0
-//        firstLabel.font = UIFont.systemFont(ofSize: 15)
-//        firstLabel.textColor = UIColor.red.withAlphaComponent(0.7)
-//        secondLabel.font = UIFont.systemFont(ofSize: 15)
-//        firstLabel.text = "市民第1 总第9  陈家飞 - 1:24:20 - 配速:4:00"
-//        secondLabel.text = "市民第2 总第25 黄建楠 - 1:34:20 - 配速:4:28"
-//        self.view.addSubview(firstLabel)
-//        self.view.addSubview(secondLabel)
-//        firstLabel.snp.makeConstraints { (make) in
-//            make.top.equalTo(40)
-//            make.left.equalTo(margin)
-//            make.right.equalTo(-margin)
-//            make.height.equalTo(50)
-//        }
-//        secondLabel.snp.makeConstraints { (make) in
-//            make.left.equalTo(firstLabel)
-//            make.top.equalTo(firstLabel.snp_bottomMargin).offset(0)
-//            make.right.equalTo(firstLabel)
-//            make.height.equalTo(50)
-//        }
-        
         self.m_imageView = UIImageView.init(image: UIImage(named: "nike_icon"))
         self.view.addSubview( self.m_imageView)
         self.m_imageView.snp.makeConstraints { (make) in
@@ -516,6 +489,8 @@ class ViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
+
+    // MARK: - overwrite
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -524,10 +499,66 @@ class ViewController: UIViewController,UITextFieldDelegate {
         registerTFs()
     }
     
+    
+    // MARK: - private
+    
+    /// 重置所有textfield的值
+    private func resetAlltheTextField(_ view : UIView) {
+        if let res = view as? UITextField {
+            res.text = "0"
+        } else {
+            for noRes in view.subviews {
+                if let res = noRes as? UITextField {
+                    res.text = "0"
+                }
+            }
+        }
+    }
+    
+    /// 弹窗
     func alert(_ sting: String) {
         let alert = UIAlertController(title: sting, message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "✍️ 好吧", style: .default, handler: nil))
         self.present(alert, animated: true)
+    }
+    
+    private func registerTFs() {
+        self.view.endEditing(true)
+    }
+    
+    private func dispose() {
+        print("miaomiaomiao???")
+    }
+    
+    private func setButtonTitleColorHighlight(btn : UIButton) {
+        switch btn {
+        case self.calculeTimeButton:
+            self.calculeTimeButton.setTitleColor(UIColor.systemOrange, for: .normal)
+            self.calculeDistanceButton.setTitleColor(UIColor.white, for: .normal)
+            self.calculeSpeedButton.setTitleColor(UIColor.white, for: .normal)
+            self.cleanButton.setTitleColor(UIColor.white, for: .normal)
+            
+        case self.calculeDistanceButton:
+            self.calculeTimeButton.setTitleColor(UIColor.white, for: .normal)
+            self.calculeDistanceButton.setTitleColor(UIColor.systemOrange, for: .normal)
+            self.calculeSpeedButton.setTitleColor(UIColor.white, for: .normal)
+            self.cleanButton.setTitleColor(UIColor.white, for: .normal)
+            
+        case self.calculeSpeedButton:
+            self.calculeTimeButton.setTitleColor(UIColor.white, for: .normal)
+            self.calculeDistanceButton.setTitleColor(UIColor.white, for: .normal)
+            self.calculeSpeedButton.setTitleColor(UIColor.systemOrange, for: .normal)
+            self.cleanButton.setTitleColor(UIColor.white, for: .normal)
+            
+        case self.cleanButton:
+            self.calculeTimeButton.setTitleColor(UIColor.white, for: .normal)
+            self.calculeDistanceButton.setTitleColor(UIColor.white, for: .normal)
+            self.calculeSpeedButton.setTitleColor(UIColor.white, for: .normal)
+            self.cleanButton.setTitleColor(UIColor.systemOrange, for: .normal)
+            
+        default: break
+            
+        }
     }
 }
 
