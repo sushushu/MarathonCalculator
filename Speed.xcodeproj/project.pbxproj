@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,11 +13,11 @@
 		51947E63234C855200D844CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51947E62234C855200D844CB /* Assets.xcassets */; };
 		51947E66234C855200D844CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51947E64234C855200D844CB /* LaunchScreen.storyboard */; };
 		51E465B9234DC8580041C0DD /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E465B8234DC8580041C0DD /* ConstraintArrayDSL.swift */; };
-		C79DC4B1E32069A219146092 /* Pods_Speed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A7A07C6B84C5C2FC947BC8 /* Pods_Speed.framework */; };
+		62D39382C88DC2009176C992 /* Pods_Speed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083585D932187CD5658B8C0A /* Pods_Speed.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1FE73D5469F15643DAE268B8 /* Pods-Speed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speed.release.xcconfig"; path = "Target Support Files/Pods-Speed/Pods-Speed.release.xcconfig"; sourceTree = "<group>"; };
+		083585D932187CD5658B8C0A /* Pods_Speed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Speed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51947E58234C854F00D844CB /* PaceCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaceCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51947E5B234C854F00D844CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51947E5D234C854F00D844CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,8 +26,8 @@
 		51947E65234C855200D844CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51947E67234C855200D844CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51E465B8234DC8580041C0DD /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintArrayDSL.swift; sourceTree = "<group>"; };
-		65A7A07C6B84C5C2FC947BC8 /* Pods_Speed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Speed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E584F1FB97E3E4A1D97A5075 /* Pods-Speed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speed.debug.xcconfig"; path = "Target Support Files/Pods-Speed/Pods-Speed.debug.xcconfig"; sourceTree = "<group>"; };
+		89C1F4AA929D83DC6A0E6AD2 /* Pods-Speed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speed.debug.xcconfig"; path = "Target Support Files/Pods-Speed/Pods-Speed.debug.xcconfig"; sourceTree = "<group>"; };
+		AFCB40F794E5AE0549F8A253 /* Pods-Speed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speed.release.xcconfig"; path = "Target Support Files/Pods-Speed/Pods-Speed.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,28 +35,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C79DC4B1E32069A219146092 /* Pods_Speed.framework in Frameworks */,
+				62D39382C88DC2009176C992 /* Pods_Speed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C87794E2A06073B9FF8E1C3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				65A7A07C6B84C5C2FC947BC8 /* Pods_Speed.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		51947E4F234C854F00D844CB = {
 			isa = PBXGroup;
 			children = (
 				51947E5A234C854F00D844CB /* Speed */,
 				51947E59234C854F00D844CB /* Products */,
 				728FD349E1A61020D5D209F1 /* Pods */,
-				0C87794E2A06073B9FF8E1C3 /* Frameworks */,
+				F6DE76FC28FF7888F49DCF2C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,10 +85,18 @@
 		728FD349E1A61020D5D209F1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E584F1FB97E3E4A1D97A5075 /* Pods-Speed.debug.xcconfig */,
-				1FE73D5469F15643DAE268B8 /* Pods-Speed.release.xcconfig */,
+				89C1F4AA929D83DC6A0E6AD2 /* Pods-Speed.debug.xcconfig */,
+				AFCB40F794E5AE0549F8A253 /* Pods-Speed.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F6DE76FC28FF7888F49DCF2C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				083585D932187CD5658B8C0A /* Pods_Speed.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,11 +106,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 51947E6A234C855200D844CB /* Build configuration list for PBXNativeTarget "Speed" */;
 			buildPhases = (
-				9EB64F19117E2D4E45F0BEFA /* [CP] Check Pods Manifest.lock */,
+				7191821A0C346B96CD581636 /* [CP] Check Pods Manifest.lock */,
 				51947E54234C854F00D844CB /* Sources */,
 				51947E55234C854F00D844CB /* Frameworks */,
 				51947E56234C854F00D844CB /* Resources */,
-				3F47389BA9260100A00CB2E7 /* [CP] Embed Pods Frameworks */,
+				856E8DD69827688548AE6D68 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -168,24 +168,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3F47389BA9260100A00CB2E7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Speed/Pods-Speed-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Speed/Pods-Speed-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Speed/Pods-Speed-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9EB64F19117E2D4E45F0BEFA /* [CP] Check Pods Manifest.lock */ = {
+		7191821A0C346B96CD581636 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -205,6 +188,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		856E8DD69827688548AE6D68 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Speed/Pods-Speed-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Speed/Pods-Speed-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Speed/Pods-Speed-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -293,7 +293,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -349,7 +349,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -362,45 +362,49 @@
 		};
 		51947E6B234C855200D844CB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E584F1FB97E3E4A1D97A5075 /* Pods-Speed.debug.xcconfig */;
+			baseConfigurationReference = 89C1F4AA929D83DC6A0E6AD2 /* Pods-Speed.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 8EYRWA5YD2;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KBHFW7NLLP;
 				INFOPLIST_FILE = Speed/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "马拉松配速计算";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sl.Speed;
 				PRODUCT_NAME = PaceCalculator;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e x86_64";
 			};
 			name = Debug;
 		};
 		51947E6C234C855200D844CB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FE73D5469F15643DAE268B8 /* Pods-Speed.release.xcconfig */;
+			baseConfigurationReference = AFCB40F794E5AE0549F8A253 /* Pods-Speed.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 8EYRWA5YD2;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KBHFW7NLLP;
 				INFOPLIST_FILE = Speed/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "马拉松配速计算";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sl.Speed;
 				PRODUCT_NAME = PaceCalculator;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e x86_64";
 			};
 			name = Release;
 		};

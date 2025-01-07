@@ -6,7 +6,7 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 
 import UIKit
 import RxSwift
@@ -15,7 +15,7 @@ extension Reactive where Base: UISwitch {
 
     /// Reactive wrapper for `isOn` property.
     public var isOn: ControlProperty<Bool> {
-        return value
+        value
     }
 
     /// Reactive wrapper for `isOn` property.

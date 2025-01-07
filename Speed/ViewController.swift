@@ -17,7 +17,6 @@ import RxCocoa
 
 class ViewController: UIViewController,UITextFieldDelegate {
     
-    lazy var m_imageView = UIImageView()
     lazy var firstLabel = UILabel()
     lazy var secondLabel = UILabel()
     lazy var timeContainView = UIView()
@@ -34,22 +33,46 @@ class ViewController: UIViewController,UITextFieldDelegate {
     lazy var calculeTimeButton = UIButton()
     lazy var calculeDistanceButton = UIButton()
     lazy var calculeSpeedButton = UIButton()
-    let distanceTitles = ["1km","5km","10km","half","full"]
+    let distanceTitles = ["1km","5km","10km","半马","全马"]
     lazy var segement = UISegmentedControl(items: distanceTitles)
     let margin = 10
     let tfTextColor = UIColor.black
     let calBackGroundColor = UIColor.black
     var disposeBag = DisposeBag()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        initUIs ()
-
+        
+        initUIs()
         doTimeShit()
         doDistanceShit()
         doSpeedShit()
         someFuckingWorkForTextField()
+        
+        navigationItem.title = "马拉松配速计算器"
+        // 设置默认值
+        hoursTF.text = "1"
+        minutesTF.text = "0"
+        secondsTF.text = "0"
+        sp_minutesTF.text = "6"
+        sp_secondsTF.text = "0"
+        segement.selectedSegmentIndex = 2
+    }
+    
+    private func setupIPadLayout() {
+        // 建议内容居中，限制最大宽度
+        let maxWidth: CGFloat = 600
+        
+        timeContainView.snp.remakeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.width.equalTo(maxWidth)
+            make.top.equalToSuperview().offset(30)
+            make.height.equalTo(50)
+        }
+        
+        // 其他视图也类似处理...
     }
     
     
@@ -303,7 +326,6 @@ class ViewController: UIViewController,UITextFieldDelegate {
     // MARK: - init UIs
     
     private func initUIs () {
-        initImageView()
         initTimeTextField ()
         initSegment ()
         initDistanceTextField ()
@@ -311,19 +333,9 @@ class ViewController: UIViewController,UITextFieldDelegate {
         initCleanButton ()
         initCalculeButtons ()
     }
-    
-    private func initImageView () {
-        self.m_imageView = UIImageView.init(image: UIImage(named: "nike_icon"))
-        self.view.addSubview( self.m_imageView)
-        self.m_imageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view)
-            make.left.equalTo(self.view)
-            make.right.equalTo(self.view)
-            make.height.equalTo(self.view.frame.size.height * 0.35)
-        }
-    }
-    
+
     private func initTimeTextField () {
+        timeContainView.layer.cornerRadius = 6
         timeContainView.layer.borderWidth = 1
         timeContainView.layer.borderColor = UIColor.gray.cgColor
         self.view.addSubview(timeContainView)
@@ -334,14 +346,9 @@ class ViewController: UIViewController,UITextFieldDelegate {
         
         timeContainView.snp.makeConstraints { (make) in
             make.left.equalTo(margin)
-//            if (secondLabel != nil) {
-//                make.top.equalTo(secondLabel.snp_bottomMargin).offset(self.view.frame.size.height * 0.20)
-//            } else {
-                make.top.equalTo(self.m_imageView.snp_bottomMargin).offset(30)
-//            }
-
             make.right.equalTo(-(self.view.frame.size.width * 0.25))
             make.height.equalTo(50)
+            make.top.equalTo(self.view.snp_topMargin).offset(30)
         }
         
         let array = [hoursTF,minutesTF,secondsTF]
@@ -390,6 +397,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         distanceTF.leftViewMode = .always
         distanceTF.keyboardType = .decimalPad
         distanceTF.tintColor = UIColor.black.withAlphaComponent(0.7)
+        distanceTF.layer.cornerRadius = 6
         distanceTF.layer.borderWidth = 1
         distanceTF.layer.borderColor = UIColor.gray.cgColor
         self.view.addSubview(distanceTF)
@@ -402,6 +410,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     }
     
     private func initSpeedView () {
+        speedContainView.layer.cornerRadius = 6
         speedContainView.layer.borderWidth = 1
         speedContainView.layer.borderColor = UIColor.gray.cgColor
         self.view.addSubview(speedContainView)
@@ -492,7 +501,11 @@ class ViewController: UIViewController,UITextFieldDelegate {
 
     // MARK: - overwrite
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -533,31 +546,49 @@ class ViewController: UIViewController,UITextFieldDelegate {
     private func setButtonTitleColorHighlight(btn : UIButton) {
         switch btn {
         case self.calculeTimeButton:
-            self.calculeTimeButton.setTitleColor(UIColor.systemOrange, for: .normal)
+//            self.calculeTimeButton.setTitleColor(UIColor.systemOrange, for: .normal)
             self.calculeDistanceButton.setTitleColor(UIColor.white, for: .normal)
             self.calculeSpeedButton.setTitleColor(UIColor.white, for: .normal)
             self.cleanButton.setTitleColor(UIColor.white, for: .normal)
             
         case self.calculeDistanceButton:
             self.calculeTimeButton.setTitleColor(UIColor.white, for: .normal)
-            self.calculeDistanceButton.setTitleColor(UIColor.systemOrange, for: .normal)
+//            self.calculeDistanceButton.setTitleColor(UIColor.systemOrange, for: .normal)
             self.calculeSpeedButton.setTitleColor(UIColor.white, for: .normal)
             self.cleanButton.setTitleColor(UIColor.white, for: .normal)
             
         case self.calculeSpeedButton:
             self.calculeTimeButton.setTitleColor(UIColor.white, for: .normal)
             self.calculeDistanceButton.setTitleColor(UIColor.white, for: .normal)
-            self.calculeSpeedButton.setTitleColor(UIColor.systemOrange, for: .normal)
+//            self.calculeSpeedButton.setTitleColor(UIColor.systemOrange, for: .normal)
             self.cleanButton.setTitleColor(UIColor.white, for: .normal)
             
         case self.cleanButton:
             self.calculeTimeButton.setTitleColor(UIColor.white, for: .normal)
             self.calculeDistanceButton.setTitleColor(UIColor.white, for: .normal)
             self.calculeSpeedButton.setTitleColor(UIColor.white, for: .normal)
-            self.cleanButton.setTitleColor(UIColor.systemOrange, for: .normal)
+//            self.cleanButton.setTitleColor(UIColor.systemOrange, for: .normal)
             
         default: break
             
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate { _ in
+            self.updateLayoutForSize(size)
+        }
+    }
+    
+    private func updateLayoutForSize(_ size: CGSize) {
+        let isLandscape = size.width > size.height
+        let isPad = traitCollection.userInterfaceIdiom == .pad
+        
+        if isPad {
+            // iPad 横屏/竖屏布局调整
+            print("iPad")
         }
     }
 }

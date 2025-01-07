@@ -9,6 +9,9 @@
 /// A type-erased `ObservableType`. 
 ///
 /// It represents a push style sequence.
+
+public typealias RxObservable<Element> = RxSwift.Observable<Element>
+
 public class Observable<Element> : ObservableType {
     init() {
 #if TRACE_RESOURCES
@@ -20,9 +23,7 @@ public class Observable<Element> : ObservableType {
         rxAbstractMethod()
     }
     
-    public func asObservable() -> Observable<Element> {
-        return self
-    }
+    public func asObservable() -> Observable<Element> { self }
     
     deinit {
 #if TRACE_RESOURCES

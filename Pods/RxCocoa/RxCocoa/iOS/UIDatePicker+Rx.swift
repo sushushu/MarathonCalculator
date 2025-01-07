@@ -6,7 +6,7 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 
 import RxSwift
 import UIKit
@@ -14,7 +14,7 @@ import UIKit
 extension Reactive where Base: UIDatePicker {
     /// Reactive wrapper for `date` property.
     public var date: ControlProperty<Date> {
-        return value
+        value
     }
 
     /// Reactive wrapper for `date` property.

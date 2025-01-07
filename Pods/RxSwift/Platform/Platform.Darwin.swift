@@ -6,11 +6,9 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     import Darwin
-    import class Foundation.Thread
-    import protocol Foundation.NSCopying
+    import Foundation
 
     extension Thread {
         static func setThreadLocalStorageValue<T: AnyObject>(_ value: T?, forKey key: NSCopying) {

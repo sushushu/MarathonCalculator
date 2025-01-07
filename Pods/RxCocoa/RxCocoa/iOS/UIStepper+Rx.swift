@@ -6,7 +6,7 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 
 import UIKit
 import RxSwift
@@ -23,14 +23,6 @@ extension Reactive where Base: UIStepper {
             }
         )
     }
-
-    /// Reactive wrapper for `stepValue` property.
-    public var stepValue: Binder<Double> {
-        return Binder(self.base) { stepper, value in
-            stepper.stepValue = value
-        }
-    }
-    
 }
 
 #endif

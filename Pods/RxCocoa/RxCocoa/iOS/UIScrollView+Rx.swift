@@ -6,7 +6,7 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 
     import RxSwift
     import UIKit
@@ -31,13 +31,6 @@
             }
 
             return ControlProperty(values: proxy.contentOffsetBehaviorSubject, valueSink: bindingObserver)
-        }
-
-        /// Bindable sink for `scrollEnabled` property.
-        public var isScrollEnabled: Binder<Bool> {
-            return Binder(self.base) { scrollView, scrollEnabled in
-                scrollView.isScrollEnabled = scrollEnabled
-            }
         }
 
         /// Reactive wrapper for delegate method `scrollViewDidScroll`

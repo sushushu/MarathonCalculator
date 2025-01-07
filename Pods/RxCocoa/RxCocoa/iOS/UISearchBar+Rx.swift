@@ -6,7 +6,7 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 
 import RxSwift
 import UIKit
@@ -17,12 +17,12 @@ extension Reactive where Base: UISearchBar {
     ///
     /// For more information take a look at `DelegateProxyType` protocol documentation.
     public var delegate: DelegateProxy<UISearchBar, UISearchBarDelegate> {
-        return RxSearchBarDelegateProxy.proxy(for: base)
+        RxSearchBarDelegateProxy.proxy(for: base)
     }
 
     /// Reactive wrapper for `text` property.
     public var text: ControlProperty<String?> {
-        return value
+        value
     }
     
     /// Reactive wrapper for `text` property.
@@ -37,11 +37,11 @@ extension Reactive where Base: UISearchBar {
                     .map { _ in searchBar?.text ?? "" }
                     .startWith(text)
         }
-
+        
         let bindingObserver = Binder(self.base) { (searchBar, text: String?) in
             searchBar.text = text
         }
-        
+
         return ControlProperty(values: source, valueSink: bindingObserver)
     }
     
@@ -64,7 +64,7 @@ extension Reactive where Base: UISearchBar {
         return ControlProperty(values: source, valueSink: bindingObserver)
     }
     
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     /// Reactive wrapper for delegate method `searchBarCancelButtonClicked`.
     public var cancelButtonClicked: ControlEvent<Void> {
         let source: Observable<Void> = self.delegate.methodInvoked(#selector(UISearchBarDelegate.searchBarCancelButtonClicked(_:)))
@@ -129,7 +129,7 @@ extension Reactive where Base: UISearchBar {
     /// - returns: Disposable object that can be used to unbind the delegate.
     public func setDelegate(_ delegate: UISearchBarDelegate)
         -> Disposable {
-        return RxSearchBarDelegateProxy.installForwardDelegate(delegate, retainDelegate: false, onProxyForObject: self.base)
+        RxSearchBarDelegateProxy.installForwardDelegate(delegate, retainDelegate: false, onProxyForObject: self.base)
     }
 }
 

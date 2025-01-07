@@ -6,7 +6,7 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 
 import UIKit
 import RxSwift
@@ -14,7 +14,7 @@ import RxSwift
 extension Reactive where Base: UISegmentedControl {
     /// Reactive wrapper for `selectedSegmentIndex` property.
     public var selectedSegmentIndex: ControlProperty<Int> {
-        return value
+        value
     }
     
     /// Reactive wrapper for `selectedSegmentIndex` property.

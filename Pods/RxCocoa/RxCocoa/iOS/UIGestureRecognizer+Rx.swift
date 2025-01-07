@@ -6,7 +6,7 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 
 import UIKit
 import RxSwift
@@ -15,7 +15,7 @@ import RxSwift
 final class GestureTarget<Recognizer: UIGestureRecognizer>: RxTarget {
     typealias Callback = (Recognizer) -> Void
     
-    let selector = #selector(ControlTarget.eventHandler(_:))
+    let selector = #selector(GestureTarget.eventHandler(_:))
     
     weak var gestureRecognizer: Recognizer?
     var callback: Callback?
@@ -65,7 +65,7 @@ extension Reactive where Base: UIGestureRecognizer {
             }
             
             return observer
-        }.takeUntil(deallocated)
+        }.take(until: deallocated)
         
         return ControlEvent(events: source)
     }
